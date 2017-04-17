@@ -12,7 +12,7 @@ RSpec.describe AmdirentStripe, :type => :model do
       :interval => "month",
       :name => "Bronze business",
       :currency => "usd",
-      :id => "bronze-business"
+      :id => "bronze-business-3"
     )
   }
   
