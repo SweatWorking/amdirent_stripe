@@ -37,6 +37,10 @@ RSpec.describe AmdirentStripe, :type => :model do
     )
   }
 
+  it "has no active subs by default" do
+    expect(user.has_active_subs?).to be(false)
+  end
+
   context :stripe_customer do
     it "creates a new stripe customer for the customer on creation" do
       expect(user.stripe_key).to_not be_nil
@@ -119,6 +123,10 @@ RSpec.describe AmdirentStripe, :type => :model do
 
       it "yields a single subscription" do
         expect(user.subscriptions.data.length).to eq 1
+      end
+
+      it "is detected by has_active_subs?" do
+        expect(user.has_active_subs?).to be(true)
       end
 
       it "can be cancelled" do

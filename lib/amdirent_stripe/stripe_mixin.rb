@@ -64,6 +64,10 @@ module AmdirentStripe::StripeMixin
     end
   end
 
+  def has_active_subs?
+    subscriptions.data.any? { |sub| !sub.ended_at and !sub.canceled_at }
+  end
+
   def save_card!(tok)
     raise NoCustomerError.new unless stripe_customer
     begin
