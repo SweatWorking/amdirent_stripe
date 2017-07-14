@@ -23,6 +23,10 @@ module AmdirentStripe::StripeMixin
     ::Stripe::Subscription.list(customer: stripe_key)
   end
 
+  def canceled_subscriptions
+    raise NoCustomerError.new unless stripe_customer
+    ::Stripe::Subscription.list(customer: stripe_key, status: 'canceled')
+  end
 
   def subscribe_to!(plan)
     raise NoCustomerError.new unless stripe_customer
